@@ -25,7 +25,7 @@
    {
       char s_name[20],f_name[20],c_name[20];
       int s_year;
-   }st;
+   }st;a
 
 
     void about(void);
@@ -45,6 +45,9 @@
 				void rule(void);
 				  void error();
 				    void notfication();
+				      void play();
+					void play2();
+					  void student_modify(FILE *fs,FILE *fi,FILE *fb);
 
 int x=170,xs=310,selector=0;
 
@@ -175,7 +178,7 @@ int x=170,xs=310,selector=0;
 	if(x==171 && y==220)
 		 {	   cleardevice();  student_record(fs, fi); }
 	if(x==171 && y==290)
-		 {	   cleardevice();    }
+		 {	   cleardevice();  student_modify(fs, fi, fb); }
 	if(x==171 && y==360)
 		 {	   cleardevice();  delete_student(fs, fi);   }
 	goto lable1;
@@ -441,7 +444,7 @@ int x=170,xs=310,selector=0;
 	bar3d(320,150,530,180,3,3);   // STUDENT
 	  floodfill(325,151,WHITE);
 
-	 
+	 play();
 	 fflush(stdin);
 
 	gotoxy(43,11);
@@ -456,7 +459,7 @@ int x=170,xs=310,selector=0;
 	  outtextxy(210,205,"this name is available in");
 	    outtextxy(220,230,"record.");
 	      outtextxy(230,255,"try with full name");
-   
+    play2();
     fclose(fs);
     getch();
     main();
@@ -467,7 +470,7 @@ int x=170,xs=310,selector=0;
 	 bar3d(320,200,530,230,3,3);   // BOOK
 	   floodfill(325,201,WHITE);
 
-    
+     play();
      fflush(stdin);
 
    gotoxy(43,14);
@@ -476,13 +479,13 @@ int x=170,xs=310,selector=0;
      bar3d(320,250,530,280,3,3);   // ISSUED BOOK
        floodfill(325,251,WHITE);
 
-     
+     play();
      fflush(stdin);
 
      gotoxy(43,17);
        gets(st.c_name);
 
-     
+     play();
 
      bar3d(320,300,530,330,3,3);   // ISSUED BOOK
        floodfill(325,311,WHITE);
@@ -504,7 +507,7 @@ int x=170,xs=310,selector=0;
 		   floodfill(312,202,WHITE);
 		     outtextxy(205,220,"Student And Father Name Must");
 		       outtextxy(240,235,"Be Different");
-	  
+	  play2();
 	  fclose(fs);
 	  getch();
 	  main();
@@ -514,26 +517,26 @@ int x=170,xs=310,selector=0;
 	outtextxy(190,220,"Y - for Save");
 	  outtextxy(320,220,"C - for cancel");
 
-      
+      play2();
       lable:
 
 	     ch=getch();
 
        if(ch=='y' || ch=='Y')
     {
-	  
+	  play();
 	    fwrite(&st,sizeof(st),1,fs);
 	      fclose(fs);
    }
    else if(ch=='c' || ch=='C')
    {
-	  
+	  play();
 	    fclose(fs);
 	      main();
    }
    else
    {
-	  
+	  play2();
 	    fclose(fs);
 	      printf("enter a valid key");
 	  goto lable;
@@ -589,6 +592,7 @@ int x=170,xs=310,selector=0;
        line(80,350,570,350);
 	outtextxy(100,370,"This Function Is Delete All The Record Of Student.");
 
+       play();
 
       gotoxy(44,14);
 	gets(name);
@@ -625,7 +629,7 @@ int x=170,xs=310,selector=0;
 	 remove("isubook.dat");
 	   rename("tmp.dat","isubook.dat");
 
-	  ();
+	 play();
 
       settextstyle(11,0,1);
 	setfillstyle(1,0);
@@ -639,14 +643,14 @@ int x=170,xs=310,selector=0;
 	      outtextxy(205,170,"Student Data Was Deleted");
 		outtextxy(215,200,"Successfully");
 
-	  2();
+	 play2();
    }
 	 else
    {
        outtextxy(205,180,"Student Data Was not be");
 	 outtextxy(215,210," delete");
 
-        2();
+       play2();
    }
 
        getch();
@@ -655,7 +659,44 @@ int x=170,xs=310,selector=0;
    }   //  deleted student fun over here
 
 
-/*       ***  Function for Dis  All The Record Of Student  ***    */
+/*      ***  Function For Perform Modification In Student Record  ***     */
+
+	  void student_modify(FILE *fs,FILE *fi,FILE *fb)
+   {
+	rectangle(1,1,getmaxx(),getmaxy());
+	  setfillstyle(9,4);
+	    floodfill(4,4,WHITE);
+	      bar3d(80,120,570,470,5,5);
+		setfillstyle(9,0);
+		  floodfill(82,124,WHITE);
+		    setfillstyle(1,15);
+		      floodfill(85,119,WHITE);
+			floodfill(572,350,WHITE);   // top 3d
+
+	circle(330,240,90);
+	  circle(300,220,10);
+	    circle(360,220,10);
+	      setfillstyle(1,4);
+		floodfill(333,243,WHITE);
+
+	settextstyle(1,0,4);
+	  outtextxy(195,20,"Student Record");
+	    line(180,60,450,60);
+
+	ellipse(330,280,180,0,30,20);
+	  outtextxy(120,360,"Currently Under Process");
+
+       play2();
+	 getch();
+	   fclose(fs);
+	     fclose(fi);
+	       fclose(fb);
+       main();
+   }       // modification fun over here
+
+
+
+/*       ***  Function for Display All The Record Of Student  ***    */
 
 	void student_record(FILE *fs, FILE *fi)
     {
@@ -664,7 +705,7 @@ int x=170,xs=310,selector=0;
 	char name[20],name2[20];
 
 	   cleardevice();
-	 ();
+	play();
 
        rectangle(1,1,getmaxx(),getmaxy());
 	 setfillstyle(9,4);
@@ -767,7 +808,7 @@ int x=170,xs=310,selector=0;
 			 floodfill(312,242,WHITE);
 			   outtextxy(240,280,"Student Not Found");
 
-	  2();
+	 play2();
      }
 
       fclose(fs);
@@ -846,7 +887,7 @@ int x=170,xs=310,selector=0;
 	char ch;
    //	     fseek(fb,0,2);
 
-	  ();
+	 play();
 
 
 	settextstyle(11,0,3);
@@ -901,21 +942,21 @@ int x=170,xs=310,selector=0;
 	settextstyle(1,0,1);
 	setfillstyle(1,0);
 
-	  ();
+	 play();
 
 		bar3d(320,150,530,180,3,3);   // STUDENT
 		floodfill(325,151,WHITE);
 		  gotoxy(44,11);
 	     gets(bk.b_name);
 
-	  ();
+	 play();
 
 		   bar3d(320,200,530,230,3,3);   // BOOK
 		   floodfill(325,201,WHITE);
 	       gotoxy(44,14);
 	     gets(bk.b_author);
 
-	  ();
+	 play();
 
 		   bar3d(320,250,530,280,3,3);   // BOOK
 		   floodfill(325,251,WHITE);
@@ -923,7 +964,7 @@ int x=170,xs=310,selector=0;
 		gotoxy(44,17);
 	     scanf("%d",&bk.b_code);
 
-	  ();
+	 play();
 
 settextstyle(11,0,1);
 setfillstyle(1,0);
@@ -935,18 +976,18 @@ outtextxy(190,220,"Y - for Save");
 outtextxy(320,220,"C - for cancel");
 
   lable:
- 2();
+play2();
 
   ch=getch();
   if(ch=='y' || ch=='Y')
   {
-		 ();
+		play();
 		fwrite(&bk,sizeof(bk),1,fb);
 		 fclose(fb);
    }
    else if(ch=='c' || ch=='C')
    {
-    ();
+   play();
 		 fclose(fb);
 		main();
    }
@@ -1029,7 +1070,7 @@ main();
 	   bar3d(320,150,530,180,3,3);   // STUDENT
 	   floodfill(325,151,WHITE);
 
-	  ();
+	 play();
 
   gotoxy(43,11);
    gets(print);
@@ -1041,14 +1082,14 @@ main();
 
      strcpy(all.i_name,print);
 
-	  ();
+	 play();
 
 		bar3d(320,200,530,230,3,3);   // BOOK
 		floodfill(325,201,WHITE);
 		gotoxy(43,14);
 		 gets(all.ib_name);
 
-	  ();
+	 play();
 
 		    bar3d(320,250,530,280,3,3);   // ISSUED BOOK
 		    floodfill(325,251,WHITE);
@@ -1056,7 +1097,7 @@ main();
 	 gotoxy(43,17);
      scanf("%d",&all.ib_code);
 
-	  ();
+	 play();
 
 			bar3d(320,300,530,330,3,3);   // ISSUED BOOK
 			floodfill(325,311,WHITE);
@@ -1074,7 +1115,7 @@ main();
 
     }
 
-	  2();
+	 play2();
 settextstyle(11,0,1);
 setfillstyle(1,0);
 bar3d(180,150,440,250,0,0);
@@ -1082,7 +1123,7 @@ bar3d(180,150,440,250,0,0);
 //outtextxy(190,220,"Y - for Save");
 
 //outtextxy(320,220,"C - for cancel");
-//	  ();
+//	 play();
 
      if(flag==0)
 outtextxy(205,170,"Student Not Found");
@@ -1102,7 +1143,7 @@ getch();
    int f=0;
    char name[10];
 
-	  ();
+	 play();
 
 	    rectangle(1,1,getmaxx(),getmaxy());
 	    setfillstyle(9,4);
@@ -1141,7 +1182,7 @@ getch();
 		line(80,350,570,350);
  outtextxy(170,370,"Check Availablity Of The Book");
 
-	  ();
+	 play();
 
    gotoxy(40,10);
    gets(name);
@@ -1173,7 +1214,7 @@ getch();
    int flag=0,code;
      FILE *tmp;
 
-	  ();
+	 play();
 
 	    rectangle(1,1,getmaxx(),getmaxy());
 	    setfillstyle(9,4);
@@ -1213,7 +1254,7 @@ getch();
 		line(80,350,570,350);
  outtextxy(90,370,"Enter Book Code & The Book Is Return Successfully");
 
-	  ();
+	 play();
 
      tmp=fopen("tmpd.dat","wb");
 
@@ -1243,7 +1284,7 @@ setfillstyle(9,BLACK);
 bar3d(180,200,440,300,0,0);
 	settextstyle(2,0,6);
 
-	  2();
+	 play2();
 
     if(flag==1)
     {
@@ -1266,7 +1307,7 @@ bar3d(180,200,440,300,0,0);
   {
 		FILE *fp;
 		 char print[1000];
-	  2();
+	 play2();
 
 	   closegraph();
        fp=fopen("rule.txt","ab+");
@@ -1280,7 +1321,7 @@ bar3d(180,200,440,300,0,0);
 		   fclose(fp);
 
 	  getch();
-	  ();
+	 play();
 
 	  main();
 }
@@ -1294,7 +1335,7 @@ char ch;
 int i;
 	      lable:
 
-	  ();
+	 play();
 
 	      cleardevice();
 		rectangle(1,1,getmaxx(),getmaxy());
@@ -1334,7 +1375,7 @@ int i;
 	outtextxy(380,380," Press ' x ' for cancel");
 	settextstyle(11,0,3);
 	ch=getch();
-	  ();
+	 play();
 
 	if(ch=='Y' || ch=='y')
 	   exit(1);
@@ -1348,7 +1389,7 @@ void about()
 {
 
 int i;
-	  ();
+	 play();
 
 	      cleardevice();
 		rectangle(1,1,getmaxx(),getmaxy());
@@ -1370,11 +1411,11 @@ int i;
        outtextxy(250,135,"DEVLOPER TEAM");
       delay(200);
        line(240,165,420,165);
-     2();
+    play2();
     outtextxy(95,185,"' RUBY FAIZAN ' Cordinate Of B.C.A.");
-     2();
+    play2();
     outtextxy(95,220,"' MUKUL JATAV ' Student of B.C.A. 2018 Batch.");
-     2();
+    play2();
     outtextxy(95,255," Special thanks to ' ADNAN BHAI ' ");
 
    settextstyle(11,0,3);
@@ -1385,7 +1426,7 @@ int i;
     outtextxy(80,390,"This Is Devloped For Maintain Library In A Well Defined Manar.");
 //    outtextxy(95,360,"");
 
-     ();
+    play();
 }
 
 
@@ -1421,7 +1462,7 @@ void notfication()
 }
 
 
-void  ()
+void play()
 {
 sound(200);
 delay(110);
@@ -1429,7 +1470,7 @@ nosound();
 
 }
 
-void  2()
+void play2()
 {
 
     sound(1000);
